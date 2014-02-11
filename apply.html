@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="Expires" content="Mon, 01 Jan 1990 12:00:00 GMT">
+<meta content="General Services Administration - http://gsa.gov/" name="DC.creator">
+<meta content="en" name="DC.language">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Apply for Round 3 - Presidential Innovation Fellows</title>
+<link class="user" href="./pifa/baseline.css" rel="stylesheet" type="text/css">
+<link class="user" href="./pifa/style.css" rel="stylesheet" type="text/css">
+<script src="./pifa/jquery.min.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+/* Copyright (C) 2012 Sylvain Hamel
+Project: https://github.com/redhotsly/simple-expand
+MIT Licence: https://raw.github.com/redhotsly/simple-expand/master/licence-mit.txt */
+(function($){"use strict";function SimpleExpand(){var that=this;that.defaults={hideMode:"fadeToggle",defaultSearchMode:"parent",defaultTarget:".content",throwOnMissingTarget:true,keepStateInCookie:false,cookieName:"simple-expand"};that.settings={};$.extend(that.settings,that.defaults);that.findLevelOneDeep=function(parent,filterSelector,stopAtSelector){return parent.find(filterSelector).filter(function(){return!$(this).parentsUntil(parent,stopAtSelector).length})};that.setInitialState=function(expander,targets){var isExpanded=that.readState(expander);if(isExpanded){expander.removeClass("collapsed").addClass("expanded");that.show(targets)}else{expander.removeClass("expanded").addClass("collapsed");that.hide(targets)}};that.hide=function(targets){if(that.settings.hideMode==="fadeToggle"){targets.hide()}else if(that.settings.hideMode==="basic"){targets.hide()}};that.show=function(targets){if(that.settings.hideMode==="fadeToggle"){targets.show()}else if(that.settings.hideMode==="basic"){targets.show()}};that.checkKeepStateInCookiePreconditions=function(){if(that.settings.keepStateInCookie&&$.cookie===undefined){throw new Error("simple-expand: keepStateInCookie option requires $.cookie to be defined.")}};that.readCookie=function(){var jsonString=$.cookie(that.settings.cookieName);if(jsonString===null||jsonString===""){return{}}else{return JSON.parse(jsonString)}};that.readState=function(expander){if(!that.settings.keepStateInCookie){return expander.hasClass("expanded")}var id=expander.attr("Id");if(id===undefined){return}var cookie=that.readCookie();var cookieValue=cookie[id];if(typeof cookieValue!=="undefined"){return cookie[id]===true}else{return expander.hasClass("expanded")}};that.saveState=function(expander,isExpanded){if(!that.settings.keepStateInCookie){return}var id=expander.attr("Id");if(id===undefined){return}var cookie=that.readCookie();cookie[id]=isExpanded;$.cookie(that.settings.cookieName,JSON.stringify(cookie),{raw:true,path:window.location.pathname})};that.toggle=function(expander,targets){var isExpanded=that.toggleCss(expander);if(that.settings.hideMode==="fadeToggle"){targets.fadeToggle(150)}else if(that.settings.hideMode==="basic"){targets.toggle()}else if($.isFunction(that.settings.hideMode)){that.settings.hideMode(expander,targets,isExpanded)}that.saveState(expander,isExpanded);return false};that.toggleCss=function(expander){if(expander.hasClass("expanded")){expander.toggleClass("collapsed expanded");return false}else{expander.toggleClass("expanded collapsed");return true}};that.findTargets=function(expander,searchMode,targetSelector){var targets=[];if(searchMode==="absolute"){targets=$(targetSelector)}else if(searchMode==="relative"){targets=that.findLevelOneDeep(expander,targetSelector,targetSelector)}else if(searchMode==="parent"){var parent=expander.parent();do{targets=that.findLevelOneDeep(parent,targetSelector,targetSelector);if(targets.length===0){parent=parent.parent()}}while(targets.length===0&&parent.length!==0)}return targets};that.activate=function(jquery,options){$.extend(that.settings,options);that.checkKeepStateInCookiePreconditions();jquery.each(function(){var expander=$(this);var targetSelector=expander.attr("data-expander-target")||that.settings.defaultTarget;var searchMode=expander.attr("data-expander-target-search")||that.settings.defaultSearchMode;var targets=that.findTargets(expander,searchMode,targetSelector);if(targets.length===0){if(that.settings.throwOnMissingTarget){throw"simple-expand: Targets not found"}return this}that.setInitialState(expander,targets);expander.click(function(){return that.toggle(expander,targets)})})}}window.SimpleExpand=SimpleExpand;$.fn.simpleexpand=function(options){var instance=new SimpleExpand;instance.activate(this,options);return this}})(jQuery);
+</script>
+<script type="text/javascript">
+
+    function dateValidation() {
+        var date_val = document.getElementById('vet-date').value;
+        var matches = /(0[1-9]|1[0-2])[-\/](0[1-9]|1\d|2\d|3[01])[-\/](19|20)\d{2}$/.exec(date_val);
+        var matches2 = /(0[1-9]|1[0-2])(0[1-9]|1\d|2\d|3[01])(19|20)\d{2}$/.exec(date_val);
+        var matches3 = /(1[0-2]|0?[1-9])[-\/](3[01]|[12][0-9]|0?[1-9])[-\/](?:[0-9]{2})?[0-9]{2}$/.exec(date_val);
+        if (matches == null && matches2 == null && matches3 == null && date_val.length > 0) {
+            alert("Enter the valid date in MM-DD-YYYY or MM/DD/YYYY or MMDDYYYY or M/D/YY format");
+            return false;
+        }
+        else {
+            return true;
+        }        
+    }
+    
+    
+    
+    function nameValidation() {
+        var nametxt = document.getElementById("appPage:appForm:frmFullName").value;
+        var emailtxt = document.getElementById("appPage:appForm:frmEmailAddress").value;
+        var vbranchtxt = document.getElementById('vet-branch').value;
+        var vdatetxt = document.getElementById('vet-date').value;
+        var formvalid = true;
+        if (nametxt == null || nametxt.length == 0 || nametxt.trim()=="") {
+            alert('Name is required.');
+            document.getElementById("appPage:appForm:frmFullName").focus();
+            return false;
+        }
+        else if (emailtxt == null || emailtxt.length == 0 || emailtxt.trim() =="") {
+            alert('Email Address is required.');
+            document.getElementById("appPage:appForm:frmEmailAddress").focus();
+            return false;
+        }
+        else if(!document.getElementsByName('frmAddOps')[0].checked && 
+                !document.getElementsByName('frmAddOps')[1].checked &&
+                !document.getElementsByName('frmAddOps')[2].checked) {
+            alert('Other Opportunities is required.');
+            document.getElementsByName('frmAddOps')[0].focus();
+            return false;
+        }
+        else if((document.getElementsByName('frmVetStatus')[1].checked || 
+                 document.getElementsByName('frmVetStatus')[2].checked) &&
+                 vbranchtxt == "--select--" ) {
+            alert('Branch of Service is required.');
+            document.getElementById('vet-branch').focus();
+            return false;
+        }
+        else if((document.getElementsByName('frmVetStatus')[1].checked || 
+                 document.getElementsByName('frmVetStatus')[2].checked) &&
+                 (vdatetxt == null || vdatetxt.length == 0 || vdatetxt.trim() =="") ) {
+            alert('Date Entered Active Duty is required.');
+            document.getElementById('vet-date').focus();
+            return false;
+        }
+        /*
+        else if (emailtxt.length > 0) {
+            var atpos=emailtxt.indexOf("@");
+            var dotpos=emailtxt.lastIndexOf(".");
+            vat spacepos = emailtxt.indexOf(" ");
+            if (atpos < 1 || dotpos < atpos+2 || dotpos+2 >= emailtxt.length) {
+                alert("Not a valid Email address.");
+                document.getElementById("appPage:appForm:frmEmailAddress").focus();
+                return false;
+            }
+        }
+        */
+        else if (emailtxt.length > 0) {
+            var reg = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!reg.test(emailtxt)){
+                alert("Not a valid Email address.");
+                document.getElementById("appPage:appForm:frmEmailAddress").focus();
+                return false;
+            }
+        }
+           
+        else {
+            return true;
+        }    
+            
+    } 
+    
+    function showWordCount(myTA, maxSize, SizeLabel) {
+        if(myTA.value.length == 0) {
+            document.getElementById(SizeLabel).innerHTML = ' '+maxSize;   
+        }    
+        if(myTA.value.length > 0) {
+            var regex = /\s+/gi;
+            var wordCount = myTA.value.trim().replace(regex, ' ').split(' ').length;
+        //if(wordCount > maxSize)
+        //    document.getElementById(SizeLabel).innerHTML = ' too-many';
+        //else
+            document.getElementById(SizeLabel).innerHTML = ' '+(maxSize - wordCount);
+        }
+    }
+   
+$(document).ready(function () {
+
+    // Assign default values to text fields in lieu of displaying labels
+
+    //$('[id*=frmFullName]').val("Kumar Pallepati");
+    //$('[id*=frmEmailAddress]').val("rajakumar.pallepati@gsa.gov");
+    //$('[id*=vet-date]').val("10/01/2014");
+          
+    // Assign value of Additional Opportunities radio buttons to hidden apex field
+
+    $('input[id*="frmAddOpps"]').click(function() {
+        $('[id*=hiddenAddOpps]').val(this.value);
+    });    
+    
+    // Assign value of Veteran's Status radio buttons to hidden apex field
+
+    $('input[id*="frmVetStatus"]').click(function() {
+        $('[id*=hiddenVeteranStatus]').val(this.value);
+    });        
+    
+    // Assign value of US Citizen radio buttons to hidden apex field
+
+    $('input[id*="frmUSCitizen"]').click(function() {
+        $('[id*=hiddenUSCitizen]').val(this.value);
+    });
+    
+    // Assign Veteran status date
+
+    $('input[id="vet-date"]').change(function() {
+        $('[id*=hiddenvet-date]').val(this.value);        
+    });
+    
+    // Assign Veteran status service
+
+    $('select[id="vet-branch"]').change(function() {
+        $('[id*=hiddenvet-branch]').val(this.value);        
+    });
+    
+    // Begin Skills
+    
+    // Assign values of selected Skills to hidden apex field //
+    
+    function populateSkills(){
+        vals = $('input[id*="frmSkills"]:checked').map(function() {
+        return this.value;
+        }).get().join(';');
+    
+        console.log(vals);
+        
+        $('input[id*="hiddenSkills"]').val(vals);
+        //$('#tagsS').val(vals);
+        
+        }
+    
+    // Run populateSkills function to build out hidden field value for Skills__c
+    
+    $('input[id*="frmSkills"]').on('change', function() {
+    populateSkills()
+    }).change();
+    
+    // End Skills
+    
+    // Begin Experiences
+    
+    // Assign values of selected Experience to hidden apex field //
+    
+    function populateExp(){
+        vals = $('input[id*="frmExp"]:checked').map(function() {
+        return this.value;
+        }).get().join(';');
+    
+        console.log(vals);
+        
+        $('input[id*="hiddenExperience"]').val(vals);
+        //$('#tagsE').val(vals);
+        
+        }
+    
+    // Run populateExp function to build out hidden field value for Experience__c
+    
+    $('input[id*="frmExp"]').on('change', function() {
+    populateExp()
+    }).change();
+    
+    // End Experiences
+    
+    // Begin Work Location
+    
+    // Assign values of selected Work Locations to hidden apex field //
+    
+    function populateWL(){
+        vals = $('input[id*="frmWorkLoc"]:checked').map(function() {
+        return this.value;
+        }).get().join(';');
+    
+        console.log(vals);
+        
+        $('input[id*="hiddenWorkLocation"]').val(vals);
+        //$('#tagsWL').val(vals);
+        
+        }
+    
+    // Run populateWL function to build out hidden field value for Work_Location__c
+    
+    $('input[id*="frmWorkLoc"]').on('change', function() {
+    populateWL()
+    }).change();
+    
+    // End Work Location
+    
+    // Begin Work Duration
+    
+    // Assign values of selected Work Durations to hidden apex field //
+    
+    function populateWD(){
+        vals = $('input[id*="frmWorkDur"]:checked').map(function() {
+        return this.value;
+        }).get().join(';');
+    
+        console.log(vals);
+        
+        $('input[id*="hiddenWorkDuration"]').val(vals);
+        //$('#tagsWD').val(vals);
+        
+        }
+    
+    // Run populateWD function to build out hidden field value for Work_Duration__c
+    
+    $('input[id*="frmWorkDur"]').on('change', function() {
+    populateWD()
+    }).change();
+    
+    // End Work Duration
+    
+    // Begin Work Amount
+    
+    // Assign values of selected Work Amounts - Full/Part Time to hidden apex field //
+    
+    function populateWA(){
+        vals = $('input[id*="frmWorkAmt"]:checked').map(function() {
+        return this.value;
+        }).get().join(';');
+    
+        console.log(vals);
+        
+        $('input[id*="hiddenWorkAmount"]').val(vals);
+        //$('#tagsWA').val(vals);
+        
+        }
+    
+    // Run populateWA function to build out hidden field value for Full_Part_Time__c
+    
+    $('input[id*="frmWorkAmt"]').on('change', function() {
+    populateWA()
+    }).change();
+    
+    // End Work Amount
+    
+    // display appropriate Veterans' Preference text and options
+    $('[name="frmVetStatus"]').on('click', function() {
+      $('#vet-status-upload-header, #vet-status-text-2, #vet-status-text-3, #vet-status-details').hide('fast');
+      $('#vet-branch').val('');
+      $('#vet-date').val('');
+    });
+    $('#frmVetStatus2').on('click', function() {
+      $('#vet-status-upload-header, #vet-status-text-2, #vet-status-details').show('fast');
+      $('#vet-branch').val('');
+      $('#vet-date').val('');
+    });
+    $('#frmVetStatus3').on('click', function() {
+      $('#vet-status-upload-header, #vet-status-text-3, #vet-status-details').show('fast');
+      $('#vet-branch').val('');
+      $('#vet-date').val('');
+    });
+    
+   
+});
+
+</script>
+<body>
+<div class="container clearfix">
+
+<div id="header">
+<img src="./pifa/pif-logo.png" alt="Presidential Innovation Fellows logo" title="Presidential Innovation Fellows" />
+        <h1>Presidential Innovation Fellows</h1>
+        <h2>2014 Application</h2>
+        <p class="highlight">The Presidential Innovation Fellows (PIF) program pairs top innovators from the private sector, non-profits, and academia with change agents in the federal government to solve our nation's most pressing problems. PIFs are deployed across government on short-term "tours of duty" to develop solutions that save lives, save money, and fuel job creation.</p>
+        <ul class="highlight">
+        <li><a href="http://wh.gov/innovationfellows">Read More about the Fellowship</a></li>
+        <li><a href="http://wh.gov/innovationfellows/meet-the-fellows">Meet the Fellows</a></li>
+        <li><a href="mailto:pif-application@gsa.gov">Contact Us</a></li>
+        </ul>
+</div>
+
+<div id="content">
+        
+<form id="appPage:appForm" name="appPage:appForm" method="post" action="http://ociodev1-gsafas.cs1.force.com/apply/PIF_Apply" enctype="multipart/form-data">
+<input type="hidden" name="appPage:appForm" value="appPage:appForm">
+
+        <div id="contact-info">
+        <h3>Contact Information</h3>
+        <p>
+        <label for="appPage:appForm:frmFullName">Your Name</label>
+        <input id="appPage:appForm:frmFullName" type="text" name="appPage:appForm:frmFullName" title="Name" placeholder="Name">
+        </p>
+        <p>
+        <label for="appPage:appForm:frmEmailAddress">Your Email Address</label>
+        <input id="appPage:appForm:frmEmailAddress" type="email" name="appPage:appForm:frmEmailAddress" title="Email" placeholder="Email">
+        </p>
+        <p>
+        <label for="appPage:appForm:frmPhoneNumber">Best Contact Number</label>
+        <input id="appPage:appForm:frmPhoneNumber" type="tel" name="appPage:appForm:frmPhoneNumber" title="Phone" placeholder="Phone">
+        </p>
+        <p>
+        <label for="appPage:appForm:frmCity">City and State, or Zip Code</label>
+        <input id="appPage:appForm:frmCity" type="text" name="appPage:appForm:frmCity" title="City/State or Zip Code" placeholder="City/State or Zip Code">
+        </p>
+        <p>
+        <label for="appPage:appForm:frmCurrentEmployer">Your Current Employer</label>
+        <input id="appPage:appForm:frmCurrentEmployer" type="text" name="appPage:appForm:frmCurrentEmployer" title="Name of Current Employer" placeholder="Name of Current Employer">
+        </p>
+        </div>
+
+        <p>
+        <input class="check" id="frmUSCitizenYes" name="frmUSCitizen" type="checkbox" value="true" /><label for="frmUSCitizenYes">Check here to verify that you are a U.S. Citizen. <em>Only U.S. citizens are eligible for the Fellowship.</em></label>
+        <input id="appPage:appForm:hiddenUSCitizen" type="hidden" name="appPage:appForm:hiddenUSCitizen" value="false" />
+        </p>
+
+
+          <h3>Skills</h3>
+          <p><strong>Which skills do you have?</strong> <em>(check all that apply)</em></p>
+          <ul class="stacked clearfix"> 
+            <li><input class="check" id="frmSkills1" type="checkbox" value="Web Developer (back-end)" /><label for="frmSkills1">Web Developer (back-end)</label></li>
+            <li><input class="check" id="frmSkills2" type="checkbox" value="Web Developer (front-end)" /><label for="frmSkills2">Web Developer (front-end)</label></li>
+            <li><input class="check" id="frmSkills3" type="checkbox" value="Data Analysis" /><label for="frmSkills3">Data Analysis</label></li>
+            <li><input class="check" id="frmSkills4" type="checkbox" value="Data Visualization" /><label for="frmSkills4">Data Visualization</label></li>
+            <li><input class="check" id="frmSkills5" type="checkbox" value="User Experience (UX/UI)" /><label for="frmSkills5">User Experience (UX/UI)</label></li>
+            <li><input class="check" id="frmSkills6" type="checkbox" value="Graphic Design" /><label for="frmSkills6">Graphic Design</label></li>
+            <li><input class="check" id="frmSkills8" type="checkbox" value="Product Management" /><label for="frmSkills8">Product Management</label></li>
+            <li><input class="check" id="frmSkills9" type="checkbox" value="Evangelism / Public Speaking" /><label for="frmSkills9">Evangelism / Public Speaking</label></li>
+            <li><input class="check" id="frmSkills10" type="checkbox" value="Legal" /><label for="frmSkills10">Legal</label></li>
+            <li><input class="check" id="frmSkills11" type="checkbox" value="Human Resources" /><label for="frmSkills11">Human Resources</label></li>
+            <li><input class="check" id="frmSkills12" type="checkbox" value="Business Development / Sales" /><label for="frmSkills12">Business Development / Sales</label></li>
+            <li><input class="check" id="frmSkills13" type="checkbox" value="Project Management" /><label for="frmSkills13">Project Management</label></li>
+            <li><input class="check" id="frmSkills14" type="checkbox" value="Entrepreneurship" /><label for="frmSkills14">Entrepreneurship</label></li>
+          </ul>
+          <input id="appPage:appForm:hiddenSkills" type="hidden" name="appPage:appForm:hiddenSkills" />
+
+          <br />
+          <p><strong>Other skills you have:</strong></p>
+          <input type="text" class="input-wide" id="appPage:appForm:frmAddSkills" name="appPage:appForm:frmAddSkills" />
+
+          <p><strong>Where can we find you online?</strong> <em>Add up to three links (e.g. GitHub, LinkedIn, your portfolio, etc.).</em></p>
+          <input id="appPage:appForm:frmLink1" type="url" name="appPage:appForm:frmLink1" placeholder="e.g. http://github.com/username"/><br />
+          <input id="appPage:appForm:frmLink2" type="url" name="appPage:appForm:frmLink2" placeholder="e.g. http://about.me/username"/><br />
+          <input id="appPage:appForm:frmLink3" type="url" name="appPage:appForm:frmLink3" placeholder="e.g. http://linkedin.com/in/username" /><br />
+
+
+          <h3>Experience</h3>
+            <p><strong>In which sectors do you have experience?</strong> <em>(check all that apply)</em></p>
+            <ul class="stacked clearfix"> 
+              <li><input class="check" id="frmExp1" type="checkbox" value="Agriculture" /><label for="frmExp1">Agriculture</label></li>
+              <li><input class="check" id="frmExp2" type="checkbox" value="Arts / Entertainment / Sports" /><label for="frmExp2">Arts / Entertainment / Sports</label></li>
+              <li><input class="check" id="frmExp3" type="checkbox" value="Education" /><label for="frmExp3">Education</label></li>
+              <li><input class="check" id="frmExp4" type="checkbox" value="Energy" /><label for="frmExp4">Energy</label></li>
+              <li><input class="check" id="frmExp5" type="checkbox" value="Environment / Climate" /><label for="frmExp5">Environment / Climate</label></li>
+              <li><input class="check" id="frmExp6" type="checkbox" value="Finance / Economics" /><label for="frmExp6">Finance / Economics</label></li>
+              <li><input class="check" id="frmExp7" type="checkbox" value="Health / Healthcare" /><label for="frmExp7">Health / Healthcare</label></li>
+              <li><input class="check" id="frmExp8" type="checkbox" value="International Affairs" /><label for="frmExp8">International Affairs</label></li>
+              <li><input class="check" id="frmExp9" type="checkbox" value="Sciences" /><label for="frmExp9">Sciences</label></li>
+              <li><input class="check" id="frmExp10" type="checkbox" value="Technology" /><label for="frmExp10">Technology</label></li>
+              <li><input class="check" id="frmExp11" type="checkbox" value="Venture Capital / Investing" /><label for="frmExp11">Venture Capital / Investing</label></li>
+            </ul>
+            <input id="appPage:appForm:hiddenExperience" type="hidden" name="appPage:appForm:hiddenExperience" />
+
+            <br />
+            
+            <p>
+              <strong>Optional:</strong> Other sectors in which you have experience:
+            </p>
+            <input type="text" class="input-wide" id="appPage:appForm:frmAddExperience" name="appPage:appForm:frmAddExperience" />
+            
+            
+            <h3>Motivation</h3>
+            <p>
+              <strong>Why would you like to be a Presidential Innovation Fellow?</strong><em>&nbsp;(150 words max)</em>
+            </p>
+            <textarea id="appPage:appForm:frmMotivation" name="appPage:appForm:frmMotivation"></textarea> 
+            <p class="words-remaining-wrapper">
+              words left: <code class="words-remaining" rel="appPage:appForm:frmMotivation">150</code>
+            </p>
+
+            <h3>Resume</h3>
+            <p>
+              <strong>Please copy and paste your resume below.</strong>
+              <strong>Do NOT include your Social Security Number.</strong>
+              <br /><em>Be sure to include the number of years of experience for any given position.</em>
+            </p>
+            <textarea id="appPage:appForm:frmResume" name="appPage:appForm:frmResume"></textarea>
+
+<script>
+CKEDITOR.timestamp = '3.6.2.3';
+var protocolAndHost = window.location.protocol + '//' + 'cdnjs.cloudflare.com'; // window.location.host;
+var editor = CKEDITOR.replace('appPage:appForm:frmResume', {
+  baseHref : '//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.2/', 
+  customConfig : protocolAndHost + '/ajax/libs/ckeditor/4.2/config.js', 
+  height : '200', 
+  bodyId : 'appPage:appForm:frmResume_rta_body', 
+  toolbar : [
+    { name: 'clipboard', items: [ 'Undo', 'Redo' ] }
+    , { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike' ] }
+    , { name: 'links', items: [ 'Link', 'Image'] }
+    , { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight' ] }
+    , { name: 'blocks', items: [ 'BulletedList', 'NumberedList', 'Indent', 'Outdent'] }
+  ], 
+  sharedSpaces : { top : 'cke_topSpace', bottom : ' cke_bottomSpace' }, 
+  contentsCss : [CKEDITOR.basePath + 'contents.css'], 
+  language : 'en-us',
+  sfdcLabels : { CkeMediaEmbed : { title : 'Embed Multimedia Content', description : 'Use &lt;iframe&gt; code from DailyMotion, Vimeo, and Youtube.', subtitle : 'Paste &amp;lt;iframe&amp;gt; code here:', exampleTitle : 'Example:', example : '\n            \n                &lt;iframe width=\&quot;560\&quot; height=\&quot;315\&quot; src=\&quot;https://www.youtube.com/embed/KcOm0TNvKBA\&quot; frameborder=\&quot;0\&quot; allowfullscreen&gt;&lt;/iframe&gt;\n            \n        ', iframeMissing : 'Invalid &lt;iframe&gt; element. Please use valid code from the approved sites.'}, sfdcSwitchToText : { sfdcSwitchToTextAlt : 'Use plain text'}, CkeImageDialog : { uploadTab : 'Upload Image', infoTab_url : 'URL', error : 'Error:', uploadTab_desc_info : 'Enter a description of the image for visually impaired users', uploadTab_desc : 'Description', infoTab_url_info : 'Example: http://www.mysite.com/myimage.jpg', btn_insert : 'Insert', missingUrlError : 'You must enter a URL', uploadTab_file : 'Select Image', infoTab_desc : 'Description', btn_upadte : 'Update', wrongFileTypeError : 'You can insert only .gif .jpeg and .png files.', infoTab : 'Web Address', title : 'Insert Image', infoTab_desc_info : 'Enter a description of the image for visually impaired users', imageUploadLimit_info : 'Max number of upload images exceeded', uploadTab_file_info : 'Maximum size 1 MB. Only png, gif or jpeg'}, CkeImagePaste : { CkeImagePasteWarning : 'Pasting an image is not working properly with Firefox, please use [Copy Image location] instead.'}}});
+</script> 
+
+        <div id="projects">
+        <h3>Projects</h3>
+        <p><em>Read about each project, and if interested let us know why you're perfect for it.</em></p>
+        <div id="project1">
+        <h4><a class="expander" href="#"><strong>Building a 21st Century Veterans Experience</strong><span></span></a></h4>
+            <div class="content">
+            <p>The Veterans Administration (VA) is embarking on a bold new effort not just to eliminate the benefits backlog, but to create a “digital by default” experience that meets or exceeds veterans’ expectations of service in the 21st offices within the VA will need to better understand what is possible with modern approaches to service delivery enabled by lightweight, consumer-focused technology platforms and Application Programming Interfaces (APIs). Presidential Innovation Fellows will work with and across key programs to find agile, strategic, and efficient ways to integrate disparate services into a single user experience. Fellows will serve as scouts and ambassadors to aid several departments within the VA in creating pilot programs, changing expectations about what is possible, finding early wins, and creating a roadmap towards an integrated experience that meets veterans’ needs.</p>
+            </div>
+            <p><input class="check" id="frmProject1Apply" name="frmProject1Apply" type="checkbox" value="Yes - Apply for VA" /><label for="frmProject1Apply">Please consider me for this project.</label></p>
+            <p><label for="appPage:appForm:frmProject1"><strong>Why are you great for this project?</strong> <em>(150 words max)</em></label></p>
+            <textarea id="appPage:appForm:frmProject1" name="appPage:appForm:frmProject1"></textarea>
+        </div>
+        <div id="project2">
+        <h4><a class="expander" href="#"><strong>By the People, For the People: Crowdsourcing to Improve Government</strong><span></span></a></h4>
+            <div class="content">
+            <p>In an age when the needs of society outweigh the resources available to government, crowdsourcing offers the promise of a pool of resources that scale with the size of the community.  This slate of five projects at five different agencies is designed to test different models of crowdsourcing in different contexts and share lessons learned across the cohort, with the goal of suggesting future opportunities to explore this strategy across the federal government in the years to come.  The five projects are:</p>
+            <ol>
+                <li>Open Street Map for Diplomacy - Department of State <p>OpenStreetMap (OSM) is a collaborative project to create a free editable map of the world.  In disasters like the Haiti earthquake, OSM allows volunteers around the world to quickly build maps of uncharted places that make it possible to get help to where it is most needed. OSM for Diplomacy expands on existing State Department initiatives to create and share open geographic data with the OSM community and support the growth of global technology communities at events hosted around the globe.  This project aims to make citizen mapping a core component of engagement with civil society and openly share the outcomes to benefit humanitarian and development work globally. In a larger sense, we hope to show how open collaboration can transform the relationship between civil society and government.</p></li>
+                <li>Asteroid Grand Challenge - National Aeronautics and Space Administration (NASA)<p>Earlier this summer, NASA announced the Asteroid Grand Challenge to: Find All Asteroid Threats to Human Populations and Know What to Do About Them.  Recognizing the power of traditional and innovative collaboration – including the use of public-private partnerships, citizen science, crowdsourcing, and incentive prizes, NASA seeks to build the processes and infrastructure to communicate, coordinate, and implement this massive endeavor.  This project will be part of a larger effort around enabling new measurements and data from citizen scientists around the world to contribute to the Grand Challenge and to make existing data from space and ground-based observatories open and machine-readable.  The project could also encompass a tracking system for volunteers to log their contributions and potentially earn “badges” to recognize their work.</p></li>
+                <li>Crowdsourcing Tools to Unlock Government Records - National Archives and Record Administration (NARA)<p>With more than 12 billion pages of records, the National Archives and Records Administration has as tremendous challenge helping citizens find exactly what they are looking for in government records. Crowdsourcing tools help unlock the information contained within the records so that the information can actually be used.  The agency’s current crowdsourcing efforts include the Citizen Archivist Dashboard, transcription projects, scan-a-thons, and partnerships with Wikipedia. This project seeks to engage citizen developers and civic hacking communities in the open development of these and other tools to benefit not only the National Archives, but crowdsourcing efforts across the government.</p></li>
+                <li>Using the Crowd to Improve Patent Quality - United States Patent and Trademark Office (USPTO)<p>To ensure the integrity of the US patents process, United States Patent and Trademark Office (USPTO) patent examiners must find and apply information about the state-of-the-art in determining whether an invention is patent-worthy.  A provision of the recently-enacted America Invents Act allows for “third party submissions,” or contributions by the public of information relevant to the patent submission.  Though crowdsourcing websites have been established to encourage public involvement in the patenting process, use of these sites to make meaningful contributions has been limited.  This project will focus on identifying and piloting effective approaches to tap into the relevant innovation communities through a wide variety of mechanisms.  The goal is an increase in the volume and relevance of information submitted, both of which will in turn increase patent quality, which is vital to innovation and economic growth.</p></li>
+                <li>Crowdsourcing Disaster Response Information - Department of Energy<p>During a disaster, tapping the power of information reported through social media can significantly improve situational awareness and speed disaster response and recovery efforts. That’s why the White House, the Federal Emergency Management Agency, and the Department of Energy launched standardized hash tags (#PowerLineDown #NoFuel and #GotFuel) to enable citizens to report downed power lines and the fuel status of gas stations via social media platforms. This project seeks to make this citizen-reported information available and actionable to FEMA, the Department of Energy, survivors, first responders, state and local officials, and utilities through a variety of platforms.  One such platform is Lantern, a new mobile app from DOE that will allow survivors to report and access information on power outages and fallen power lines and help users find fuel and report the status of gas stations.</p></li>
+            </ol>
+            </div>
+            <p><input class="check" id="frmProject2Apply" name="frmProject2Apply" type="checkbox" value="Yes - Apply for Crowdsourcing" /><label for="frmProject2Apply">Please consider me for this project.</label></p>
+            <p><label for="appPage:appForm:frmProject2"><strong>Why are you great for this project?</strong> <em>(150 words max)</em></label></p>
+            <textarea id="appPage:appForm:frmProject2" name="appPage:appForm:frmProject2" onchange="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onclick="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onkeydown="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onkeyup="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onmousedown="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);"></textarea>
+        </div>
+        <div id="project3">
+        <h4><a class="expander" href="#"><strong>Data Innovation</strong><span></span></a></h4>
+            <div class="content">
+            <p>Previously known as the Open Data and MyData initiatives, the Data Innovation effort focuses on accelerating and expanding efforts to make the government’s information resources more publicly accessible in machine-readable formats and spurring the use of those resources by entrepreneurs as fuel for the creation of new products, services, and jobs.  Also within this effort are projects that focus on empowering the American people with secure access to their own personal health, energy, and education, and financial data (MyData initiatives). This suite of Data Innovation initiatives will support the President’s Climate Data Initiative, a new Skills and Training Data Initiative, and other priority data initiatives across government. The Data Innovation cohort will recruit Presidential Innovation Fellows to serve in the following agencies:</p>
+            <ul>
+            <li>National Oceanic and Atmospheric Administration (NOAA)</li>
+            <li>Census Bureau</li>
+            <li>National Aeronautic and Space Administration (NASA)</li>
+            <li>Department of the Interior (DOI)</li>
+            <li>Department of Labor (DOL)</li>
+            <li>Internal Revenue Service (IRS)</li>
+            <li>National Institutes of Health (NIH)</li>
+            <li>Department of Energy (DOE)</li>
+            <li>Department of Health and Human Services (HHS)</li>
+            </ul>
+            </div>
+            <p><input class="check" id="frmProject3Apply" name="frmProject3Apply" type="checkbox" value="Yes - Apply for VA" /><label for="frmProject3Apply">Please consider me for this project.</label></p>
+            <p><label for="appPage:appForm:frmProject3"><strong>Why are you great for this project?</strong> <em>(150 words max)</em></label></p>
+            <textarea id="appPage:appForm:frmProject3" name="appPage:appForm:frmProject3" onchange="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onclick="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onkeydown="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onkeyup="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);" onmousedown="showWordCount(this, 150, &#39;appPage:appForm:myTASize&#39;);"></textarea>
+        </div>
+        </div>
+
+
+            <h3>Your Availability</h3>
+            
+            <p><strong>Which kinds of employment situations interest you? (check all that apply)</strong></p>
+            <ul class="stacked clearfix"> 
+              <li><input class="check" id="frmWorkAmt1" type="checkbox" value="Full time work" /><label for="frmWorkAmt1">Full Time work</label></li>
+              <li><input class="check" id="frmWorkAmt2" type="checkbox" value="Part time work" /><label for="frmWorkAmt2">Part Time work</label></li>
+            </ul>
+            <input id="appPage:appForm:hiddenWorkAmount" type="hidden" name="appPage:appForm:hiddenWorkAmount" />
+            <hr />
+            <ul class="stacked clearfix"> 
+              <li><input class="check" id="frmWorkLoc1" type="checkbox" value="Mostly work in DC" /><label for="frmWorkLoc1">Mostly work in DC</label></li>
+              <li><input class="check" id="frmWorkLoc2" type="checkbox" value="Mix of DC and remote" /><label for="frmWorkLoc2">Mix of DC and remote</label></li>
+              <li><input class="check" id="frmWorkLoc3" type="checkbox" value="Mostly work remotely" /><label for="frmWorkLoc3">Mostly work remotely</label></li>
+            </ul>
+            <input id="appPage:appForm:hiddenWorkLocation" type="hidden" name="appPage:appForm:hiddenWorkLocation" />
+            <hr />
+            <ul class="stacked clearfix"> 
+              <li><input class="check" id="frmWorkDur1" type="checkbox" value="6 months" /><label for="frmWorkDur1">6 months</label></li>
+              <li><input class="check" id="frmWorkDur2" type="checkbox" value="6-12 months" /><label for="frmWorkDur2">6-12 months</label></li>
+              <li><input class="check" id="frmWorkDur3" type="checkbox" value="12 months" /><label for="frmWorkDur3">More than 12 months</label></li>
+            </ul>
+            <input id="appPage:appForm:hiddenWorkDuration" type="hidden" name="appPage:appForm:hiddenWorkDuration" />
+
+
+            <h3>Veteran Status</h3>
+            <p>
+              <strong>What is your US Armed Forces Veteran status?</strong><br /><br />
+              <input class="check" id="frmVetStatus1" name="frmVetStatus" type="radio" value="No - I am not a Veteran" /><label for="frmVetStatus1">No, I am not a Veteran of the U.S. Armed Forces.</label><br />
+              <input class="check" id="frmVetStatus2" name="frmVetStatus" type="radio" value="Yes - I am a Veteran" /><label for="frmVetStatus2">Yes, I am a Veteran of the U.S. Armed Forces.</label><br />
+              <input class="check" id="frmVetStatus3" name="frmVetStatus" type="radio" value="Yes - I am a Veteran (More than 10% Service Disabled)" /><label for="frmVetStatus3">Yes, I am a Veteran  of the U.S. Armed Forces, and am more than 10% service disabled.</label><br />
+              <input class="check" id="frmVetStatus4" name="frmVetStatus" type="radio" value="Yes - I am a Veteran but not eligible for Veteran's preference" /><label for="frmVetStatus4">Yes, I am a Veteran, but I know that I am not eligible for veterans' preference.</label><br />
+              <input id="appPage:appForm:hiddenVeteranStatus" type="hidden" name="appPage:appForm:hiddenVeteranStatus" />
+            </p>
+
+            <h3 id="vet-status-upload-header" class="hidden">Confirm Veteran Status</h3>
+            
+            <p id="vet-status-text-2" class="hidden">
+              It sounds like you may be eligible for Veterans' Preference. You have indicated that you are a Veteran who is not 10% or more service disabled.
+              
+              In order to receive the appropriate preference, please indicate your branch of service and the date you entered active duty.
+              <br /><br />
+              If you skip this step, you are choosing not to provide evidence of your service, so you will not receive Veterans' Preference, but will instead receive consideration equivalent to non-Veterans.
+            </p>
+            <p id="vet-status-text-3" class="hidden">
+              It sounds like you may be eligible for Veterans' Preference. You have indicated that you are a Veteran who is 10% or more service disabled. 
+              
+              In order to receive the appropriate preference, please indicate your branch of service and the date you entered active duty.
+
+              <br /><br />
+              If you skip this step, you are choosing not to provide evidence of your service, so you will not receive Veterans' Preference, but will instead receive consideration equivalent to non-Veterans.
+            </p>
+            
+            <p id="vet-status-details" class="hidden">
+              <label><strong>Branch of Service</strong></label>
+              <select id="vet-branch">
+                <option value="">--select--</option>
+                <option value="Air Force">Air Force</option>
+                <option value="Army">Army</option>
+                <option value="Coast Guard">Coast Guard</option>
+                <option value="Marine Corps">Marine Corps</option>
+                <option value="Navy">Navy</option>
+              </select>
+              <br />
+              <label><strong>Date Entered Active Duty</strong></label>
+              <input id="vet-date" type="text" placeholder="MM/DD/YYYY" />
+            </p>
+
+            <h3>Review &amp; Submit</h3>
+            <p> <em>Information submitted through this application will be shared with Federal agencies for the purpose of candidate review, selection and hiring.</em></p>
+            <p>  
+            <input class="check" id="frmAddOpps1" name="frmAddOps" type="checkbox" checked="checked" value="Yes - I want to be considered" /><label for="frmAddOpps1">Please also consider me for other employment opportunities within the US government.</label><br />
+            <input class="check" id="frmAddOpps3" name="frmAddOps" type="checkbox" checked="checked" value="No - Notify on new developments" /><label for="frmAddOpps3">Please keep me informed about the Presidential Innovation Fellows program.</label><br />
+            <input id="appPage:appForm:hiddenAddOpps" type="hidden" name="appPage:appForm:hiddenAddOpps" />
+            </p>
+           <p><input id="appPage:appForm:appSubmit" type="submit" name="appPage:appForm:appSubmit" value="Submit Application" onclick="return nameValidation();"></p>
+    </form>
+</div>
+    <script type="text/javascript">
+    $('.expander').simpleexpand();
+    </script>
+</body>
+</html>
